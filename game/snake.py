@@ -5,7 +5,7 @@ import arcade
 from game.movement import R, L, U, D, SCREEN_HEIGHT, SCREEN_WIDTH
 
 # La posicion incial de la serpiente
-CENTER_X, CENTER_Y = 150, 300
+CENTER_X, CENTER_Y = SCREEN_HEIGHT // 2, SCREEN_WIDTH // 2
 
 
 class Snake(arcade.SpriteList):
@@ -14,11 +14,33 @@ class Snake(arcade.SpriteList):
         super().__init__()
 
         self.direction: int = R
-        self._direction_list: List[int] = 8 * [R]
+        self._direction_list: List[int] = 3 * [R]
 
         # Creamos las partes iniciales de la serpiente
-        for i in range(8):
+        for i in range(3):
             self.append(self._create_sprite(CENTER_X - 10 * i, CENTER_Y))
+
+    def eat_apple(self) -> NoReturn:
+        # Añadimos una direccion a la cola
+        last_dir: int = self._direction_list[-1]
+        self._direction_list.append(last_dir)
+
+        # La cola de la serpiente
+        sprite_back: arcade.SpriteSolidColor = self[-1]
+
+        center_x = sprite_back.center_x
+        center_y = sprite_back.center_y
+
+        if last_dir == R:
+            center_x -= 10
+        elif last_dir == L:
+            center_x += 10
+        elif last_dir == U:
+            center_y -= 10
+        elif last_dir == D:
+            center_y += 10
+
+        self.append(self._create_sprite(center_x, center_y))
 
     def update(self) -> NoReturn:
         # Añadimos la direccion y eliminamos el ultimo elemento
@@ -35,6 +57,7 @@ class Snake(arcade.SpriteList):
 
         # Si hay duplicados, error
         if len(part_pos) != len(set(part_pos)):
+            print("Collision")
             raise ValueError("")
 
     @staticmethod

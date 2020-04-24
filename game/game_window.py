@@ -41,6 +41,7 @@ class GameWindow(arcade.Window):
         if len(hit_list):
             self.apple = Apple(10, 10)
             self.points += 1
+            self.snake.eat_apple()
 
         self.snake.update()
         self.snake.update_animation()
