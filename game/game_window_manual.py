@@ -12,8 +12,7 @@ class GameWindowManual(GameWindow):
 
         time.sleep(0.1)
 
-        self.snake.update()
-        self.snake.update_animation()
+        super().update(delta_time)
 
     def on_key_press(self, symbol: int, modifiers: int):
         self.start_key = True

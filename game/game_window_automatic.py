@@ -13,8 +13,11 @@ class GameWindowAutomatic(GameWindow):
             return
 
         time.sleep(0.1)
+
+        # AQUI EMPIEZA LA LOGICA ---------------------------------------------------------------------------------------
         if rd.choice(6*[False] + 4*[True]):
             self.snake.direction = get_new_mov(self.snake.direction)
 
-        self.snake.update()
-        self.snake.update_animation()
+        # --------------------------------------------------------------------------------------------------------------
+        # NO TOCAR ESTA LINEA
+        super().update(delta_time)

@@ -18,7 +18,12 @@ class GameWindow(arcade.Window):
     def setup(self) -> NoReturn:
         self.snake: Snake = Snake()
         self.start_key = False
+        self.points = 0
 
     def on_draw(self) -> NoReturn:
         arcade.start_render()
         self.snake.draw()
+
+    def update(self, delta_time: float):
+        self.snake.update()
+        self.snake.update_animation()
