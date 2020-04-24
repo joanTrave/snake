@@ -3,6 +3,7 @@ from typing import NoReturn
 import arcade
 
 from game.apple import Apple
+from game.movement import COMPONENT_SIZE
 from game.snake import Snake
 
 
@@ -20,7 +21,7 @@ class GameWindow(arcade.Window):
         self.snake: Snake = Snake()
         self.start_key = False
         self.points = 0
-        self.apple = Apple(10, 10)
+        self.apple = Apple(COMPONENT_SIZE, COMPONENT_SIZE)
 
     def on_draw(self) -> NoReturn:
         arcade.start_render()
@@ -39,7 +40,7 @@ class GameWindow(arcade.Window):
         hit_list: list = arcade.check_for_collision_with_list(self.apple, self.snake)
 
         if len(hit_list):
-            self.apple = Apple(10, 10)
+            self.apple = Apple(COMPONENT_SIZE, COMPONENT_SIZE)
             self.points += 1
             self.snake.eat_apple()
 

@@ -2,7 +2,7 @@ from typing import NoReturn, List, Tuple
 
 import arcade
 
-from game.movement import R, L, U, D, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.movement import R, L, U, D, SCREEN_HEIGHT, SCREEN_WIDTH, COMPONENT_SIZE
 
 # La posicion incial de la serpiente
 CENTER_X, CENTER_Y = SCREEN_HEIGHT // 2, SCREEN_WIDTH // 2
@@ -18,7 +18,7 @@ class Snake(arcade.SpriteList):
 
         # Creamos las partes iniciales de la serpiente
         for i in range(3):
-            self.append(self._create_sprite(CENTER_X - 10 * i, CENTER_Y))
+            self.append(self._create_sprite(CENTER_X - COMPONENT_SIZE * i, CENTER_Y))
 
     def eat_apple(self) -> NoReturn:
         # Añadimos una direccion a la cola
@@ -32,13 +32,13 @@ class Snake(arcade.SpriteList):
         center_y = sprite_back.center_y
 
         if last_dir == R:
-            center_x -= 10
+            center_x -= COMPONENT_SIZE
         elif last_dir == L:
-            center_x += 10
+            center_x += COMPONENT_SIZE
         elif last_dir == U:
-            center_y -= 10
+            center_y -= COMPONENT_SIZE
         elif last_dir == D:
-            center_y += 10
+            center_y += COMPONENT_SIZE
 
         self.append(self._create_sprite(center_x, center_y))
 
@@ -64,15 +64,15 @@ class Snake(arcade.SpriteList):
     def _get_part_from_mov(part: arcade.SpriteSolidColor, mov: int) -> arcade.SpriteSolidColor:
         if mov == R:
             part.change_y = 0
-            part.change_x = 10
+            part.change_x = COMPONENT_SIZE
         elif mov == L:
             part.change_y = 0
-            part.change_x = -10
+            part.change_x = -COMPONENT_SIZE
         elif mov == U:
-            part.change_y = 10
+            part.change_y = COMPONENT_SIZE
             part.change_x = 0
         elif mov == D:
-            part.change_y = -10
+            part.change_y = -COMPONENT_SIZE
             part.change_x = 0
         else:
             raise ValueError("Invalid movement")
@@ -85,7 +85,7 @@ class Snake(arcade.SpriteList):
 
     @staticmethod
     def _create_sprite(center_x: int, center_y: int) -> arcade.SpriteSolidColor:
-         sprite_color = arcade.SpriteSolidColor(10, 10, arcade.color.GREEN)
+         sprite_color = arcade.SpriteSolidColor(COMPONENT_SIZE, COMPONENT_SIZE, arcade.color.GREEN)
          sprite_color.center_x = center_x
          sprite_color.center_y = center_y
          return sprite_color

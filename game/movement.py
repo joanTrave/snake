@@ -11,6 +11,7 @@ D: int = 3
 
 SCREEN_WIDTH: int = 800
 SCREEN_HEIGHT: int = 600
+COMPONENT_SIZE: int = 20
 
 MOV_LIST: List[int] = [R, L, D, U]
 
