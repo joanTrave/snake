@@ -2,7 +2,7 @@ import time
 from typing import NoReturn
 
 from game.game_window import GameWindow
-from game.movement import get_mov_from_key
+from game.movement import get_mov_from_key, DELTA_TIME
 
 
 class GameWindowManual(GameWindow):
@@ -10,7 +10,7 @@ class GameWindowManual(GameWindow):
         if not self.start_key:
             return
 
-        time.sleep(0.15)
+        time.sleep(DELTA_TIME)
 
         super().update(delta_time)
 

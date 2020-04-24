@@ -13,6 +13,8 @@ SCREEN_WIDTH: int = 800
 SCREEN_HEIGHT: int = 600
 COMPONENT_SIZE: int = 20
 
+DELTA_TIME: float = 0.15
+
 MOV_LIST: List[int] = [R, L, D, U]
 
 
