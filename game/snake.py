@@ -28,8 +28,8 @@ class Snake(arcade.SpriteList):
         # La cola de la serpiente
         sprite_back: arcade.SpriteSolidColor = self[-1]
 
-        center_x = sprite_back.center_x
-        center_y = sprite_back.center_y
+        center_x: int = int(sprite_back.center_x)
+        center_y: int = int(sprite_back.center_y)
 
         if last_dir == R:
             center_x -= COMPONENT_SIZE
