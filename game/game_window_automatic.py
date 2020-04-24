@@ -9,8 +9,7 @@ from game.movement import get_new_mov
 class GameWindowAutomatic(GameWindow):
 
     def on_update(self, delta_time: float) -> NoReturn:
-        if not self.start_key:
-            return
+        self.start_key = True
 
         time.sleep(0.1)
 

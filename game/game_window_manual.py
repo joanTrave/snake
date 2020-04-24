@@ -10,7 +10,7 @@ class GameWindowManual(GameWindow):
         if not self.start_key:
             return
 
-        time.sleep(0.1)
+        time.sleep(0.2)
 
         super().update(delta_time)
 
