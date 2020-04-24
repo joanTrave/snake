@@ -15,7 +15,11 @@ class Snake(arcade.SpriteList):
         for i in range(3):
             self.append(self._create_sprite(CENTER_X - 10 * i, CENTER_Y))
 
-    def _create_sprite(self, center_x: int, center_y: int) -> arcade.SpriteSolidColor:
+    def update(self) -> NoReturn:
+        super().update()
+
+    @staticmethod
+    def _create_sprite(center_x: int, center_y: int) -> arcade.SpriteSolidColor:
          sprite_color = arcade.SpriteSolidColor(10, 10, arcade.color.GREEN)
          sprite_color.center_x = center_x
          sprite_color.center_y = center_y
