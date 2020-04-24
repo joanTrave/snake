@@ -1,10 +1,10 @@
-from typing import NoReturn, List
+from typing import NoReturn, List, Tuple
 
 import arcade
 
-# La posicion incial de la serpiente
 from game.movement import R, L, U, D
 
+# La posicion incial de la serpiente
 CENTER_X, CENTER_Y = 150, 300
 
 
@@ -21,14 +21,21 @@ class Snake(arcade.SpriteList):
             self.append(self._create_sprite(CENTER_X - 10 * i, CENTER_Y))
 
     def update(self) -> NoReturn:
-        print(self._direction_list)
         # Añadimos la direccion y eliminamos el ultimo elemento
         self._direction_list.insert(0, self.direction)
         self._direction_list.pop()
 
+        # Lista de posiciones
+        part_pos: List[Tuple[float, float]] = []
+
         for direction, part in zip(self._direction_list, self):
             part = self._get_part_from_mov(part, direction)
             part.update()
+            part_pos.append((part.center_x, part.center_y))
+
+        # Si hay duplicados, error
+        if len(part_pos) != len(set(part_pos)):
+            raise ValueError("")
 
     @staticmethod
     def _get_part_from_mov(part: arcade.SpriteSolidColor, mov: int) -> arcade.SpriteSolidColor:
