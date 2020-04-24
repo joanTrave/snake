@@ -10,8 +10,6 @@ class GameWindow(arcade.Window):
     def __init__(self, width: int, height: int, title: str) -> NoReturn:
         super().__init__(width, height, title)
 
-        self.start_key = False
-
         self.snake = None
 
         # Set the background color
@@ -19,6 +17,7 @@ class GameWindow(arcade.Window):
 
     def setup(self) -> NoReturn:
         self.snake: Snake = Snake()
+        self.start_key = False
 
     def on_draw(self) -> NoReturn:
         arcade.start_render()

@@ -15,8 +15,6 @@ class GameWindowAutomatic(GameWindow):
         time.sleep(0.1)
         if rd.choice(6*[False] + 4*[True]):
             self.snake.direction = get_new_mov(self.snake.direction)
-        try:
-            self.snake.update()
-            self.snake.update_animation()
-        except:
-            self.start_key = False
+
+        self.snake.update()
+        self.snake.update_animation()

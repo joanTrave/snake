@@ -2,7 +2,7 @@ from typing import NoReturn, List, Tuple
 
 import arcade
 
-from game.movement import R, L, U, D
+from game.movement import R, L, U, D, SCREEN_HEIGHT, SCREEN_WIDTH
 
 # La posicion incial de la serpiente
 CENTER_X, CENTER_Y = 150, 300
@@ -53,6 +53,10 @@ class Snake(arcade.SpriteList):
             part.change_x = 0
         else:
             raise ValueError("Invalid movement")
+
+        if part.left < 0 or part.right > SCREEN_WIDTH - 1 or part.bottom < 0 or part.top > SCREEN_HEIGHT - 1:
+            raise ValueError("Invalid movement")
+
         return part
 
 

@@ -12,11 +12,8 @@ class GameWindowManual(GameWindow):
 
         time.sleep(0.1)
 
-        try:
-            self.snake.update()
-            self.snake.update_animation()
-        except:
-            self.start_key = False
+        self.snake.update()
+        self.snake.update_animation()
 
     def on_key_press(self, symbol: int, modifiers: int):
         self.start_key = True

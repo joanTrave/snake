@@ -9,6 +9,9 @@ L: int = 1
 U: int = 2
 D: int = 3
 
+SCREEN_WIDTH: int = 800
+SCREEN_HEIGHT: int = 600
+
 MOV_LIST: List[int] = [R, L, D, U]
 
 
